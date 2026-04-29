@@ -856,8 +856,10 @@ When set to ``true``, the SDK publishes process-level resource attributes via a
 Linux memfd-backed memory mapping that external readers (such as the
 OpenTelemetry eBPF profiler) can discover by parsing ``/proc/<pid>/maps``.
 
-This implements the in-flight OTEP 4719
+This implements OTEP 4719
 (https://github.com/open-telemetry/opentelemetry-specification/pull/4719).
+The OTEP itself is merged; the corresponding ``ProcessContext`` proto message
+is still in flight in opentelemetry-proto#783 and is vendored locally for now.
 Linux only; on other platforms this variable has no effect.
 
 This is an experimental environment variable and the name of this variable

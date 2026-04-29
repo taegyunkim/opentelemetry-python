@@ -12,8 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-- `opentelemetry-sdk`: experimental publisher for OTEP 4719 (process context sharing). When `OTEL_EXPERIMENTAL_PROCESS_CONTEXT_PUBLISHER=true`, the SDK publishes process-level resource attributes via a Linux memfd-backed mapping that external readers (such as the OpenTelemetry eBPF profiler) can discover by parsing `/proc/<pid>/maps`. Linux only; gated and subject to change while OTEP 4719 is in draft.
-- `opentelemetry-proto`: vendor `opentelemetry/proto/processcontext/v1development/process_context.proto` and generated bindings, locally tracking the in-flight OTEP 4719. To be removed once the proto lands upstream.
+- `opentelemetry-sdk`: experimental publisher for OTEP 4719 (process context sharing). When `OTEL_EXPERIMENTAL_PROCESS_CONTEXT_PUBLISHER=true`, the SDK publishes process-level resource attributes via a Linux memfd-backed mapping that external readers (such as the OpenTelemetry eBPF profiler) can discover by parsing `/proc/<pid>/maps`. Linux only; gated since the `ProcessContext` proto (open-telemetry/opentelemetry-proto#783) has not yet shipped upstream.
+- `opentelemetry-proto`: vendor `opentelemetry/proto/processcontext/v1development/process_context.proto` and generated bindings, locally tracking opentelemetry-proto#783. To be removed once that PR lands and is released.
 - `opentelemetry-sdk`: add `additional_properties` support to generated config models via custom `datamodel-codegen` template, enabling plugin/custom component names to flow through typed dataclasses
   ([#5131](https://github.com/open-telemetry/opentelemetry-python/pull/5131))
 - Fix incorrect code example in `create_tracer()` docstring

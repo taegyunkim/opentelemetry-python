@@ -22,7 +22,10 @@ The feature is gated behind
 :envvar:`OTEL_EXPERIMENTAL_PROCESS_CONTEXT_PUBLISHER`; on platforms other than
 Linux every public function is a no-op.
 
-OTEP draft: https://github.com/open-telemetry/opentelemetry-specification/pull/4719
+OTEP 4719 was merged into the OpenTelemetry specification on 2026-04-07. The
+``ProcessContext`` proto message is tracked separately in
+opentelemetry-proto#783 and is not yet released; until that lands the proto
+bindings are vendored locally.
 """
 
 from __future__ import annotations
