@@ -63,6 +63,9 @@ from opentelemetry.sdk.environment_variables import (
     OTEL_ATTRIBUTE_VALUE_LENGTH_LIMIT,
     OTEL_SDK_DISABLED,
 )
+from opentelemetry.sdk._internal._process_context import (
+    maybe_publish_from_resource as _maybe_publish_process_context,
+)
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.util import ns_to_iso_str
 from opentelemetry.sdk.util._configurator import RuleBasedConfigurator
@@ -794,6 +797,7 @@ class LoggerProvider(APILoggerProvider):
             self._resource = Resource.create({})
         else:
             self._resource = resource
+        _maybe_publish_process_context(self._resource)
         self._multi_log_record_processor = (
             multi_log_record_processor or SynchronousMultiLogRecordProcessor()
         )

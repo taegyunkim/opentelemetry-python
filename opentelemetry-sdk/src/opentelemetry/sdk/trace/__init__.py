@@ -60,6 +60,9 @@ from opentelemetry.sdk.environment_variables import (
     OTEL_SPAN_EVENT_COUNT_LIMIT,
     OTEL_SPAN_LINK_COUNT_LIMIT,
 )
+from opentelemetry.sdk._internal._process_context import (
+    maybe_publish_from_resource as _maybe_publish_process_context,
+)
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import sampling
 from opentelemetry.sdk.trace._tracer_metrics import TracerMetrics
@@ -1318,6 +1321,7 @@ class TracerProvider(trace_api.TracerProvider):
             self._resource = Resource.create({})
         else:
             self._resource = resource
+        _maybe_publish_process_context(self._resource)
         if not sampler:
             sampler = sampling._get_from_env_or_default()
         self.sampler = sampler

@@ -845,3 +845,21 @@ Default: opentelemetry.sdk._logs._internal._default_logger_configurator
 This is an experimental environment variable and the name of this variable and its behavior can
 change in a non-backwards compatible way.
 """
+
+OTEL_EXPERIMENTAL_PROCESS_CONTEXT_PUBLISHER = (
+    "OTEL_EXPERIMENTAL_PROCESS_CONTEXT_PUBLISHER"
+)
+"""
+.. envvar:: OTEL_EXPERIMENTAL_PROCESS_CONTEXT_PUBLISHER
+
+When set to ``true``, the SDK publishes process-level resource attributes via a
+Linux memfd-backed memory mapping that external readers (such as the
+OpenTelemetry eBPF profiler) can discover by parsing ``/proc/<pid>/maps``.
+
+This implements the in-flight OTEP 4719
+(https://github.com/open-telemetry/opentelemetry-specification/pull/4719).
+Linux only; on other platforms this variable has no effect.
+
+This is an experimental environment variable and the name of this variable
+and its behavior can change in a non-backwards compatible way.
+"""

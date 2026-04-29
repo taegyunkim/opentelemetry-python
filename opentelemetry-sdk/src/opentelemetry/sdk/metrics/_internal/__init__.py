@@ -62,6 +62,9 @@ from opentelemetry.sdk.metrics._internal.measurement_consumer import (
 from opentelemetry.sdk.metrics._internal.sdk_configuration import (
     SdkConfiguration,
 )
+from opentelemetry.sdk._internal._process_context import (
+    maybe_publish_from_resource as _maybe_publish_process_context,
+)
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.util._configurator import RuleBasedConfigurator
 from opentelemetry.sdk.util.instrumentation import (
@@ -493,6 +496,7 @@ class MeterProvider(APIMeterProvider):
         self._atexit_handler = None
         if resource is None:
             resource = Resource.create({})
+        _maybe_publish_process_context(resource)
         self._sdk_config = SdkConfiguration(
             exemplar_filter=(
                 exemplar_filter
